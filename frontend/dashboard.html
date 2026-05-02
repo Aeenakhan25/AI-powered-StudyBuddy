@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | StudyAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <h1 class="logo">StudyAI</h1>
+            <ul class="nav-links">
+                <li><a href="dashboard.html" class="active"><span>📊</span> Dashboard</a></li>
+                <li><a href="notes.html"><span>📝</span> Notes</a></li>
+                <li><a href="chat.html"><span>🤖</span> Chat</a></li>
+                <li><a href="quiz.html"><span>🎯</span> Quiz</a></li>
+                <li><a href="flashcards.html"><span>🗂️</span> Flashcards</a></li>
+                <li><a href="planner.html"><span>📅</span> Planner</a></li>
+            </ul>
+            <div style="margin-top: auto;">
+                <button onclick="StudyAI.logout()" class="btn btn-glass" style="width: 100%;">Logout</button>
+            </div>
+        </nav>
+
+        <main class="animate-fade">
+            <header>
+                <div>
+                    <h1 id="welcomeText">Welcome back! 👋</h1>
+                    <p style="color: var(--text-muted);">Your personalized study hub.</p>
+                </div>
+            </header>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Total Notes</h3>
+                    <p id="totalNotes" style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0; color: var(--primary);">0</p>
+                    <p style="color: var(--text-muted);">Active study entries</p>
+                </div>
+                <div class="card">
+                    <h3>Completed Tasks</h3>
+                    <p id="completedTasks" style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0; color: var(--secondary);">0</p>
+                    <p style="color: var(--text-muted);">Goals achieved</p>
+                </div>
+                <div class="card">
+                    <h3>Quiz Score</h3>
+                    <p id="avgScore" style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0; color: var(--accent);">0%</p>
+                    <div class="progress-bar"><div id="scoreBar" class="progress-fill"></div></div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem;">
+                <div class="card">
+                    <h3 style="margin-bottom: 2rem;">Activity Feed</h3>
+                    <div id="recentActivityList" style="display: flex; flex-direction: column; gap: 1.2rem;"></div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 2rem;">Quick Launch</h3>
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                        <button class="btn btn-glass" onclick="location.href='notes.html'">📝 Notes</button>
+                        <button class="btn btn-glass" onclick="location.href='chat.html'">🤖 Chat</button>
+                        <button class="btn btn-glass" onclick="location.href='quiz.html'">🎯 Quiz</button>
+                        <button class="btn btn-glass" onclick="location.href='planner.html'">📅 Planner</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

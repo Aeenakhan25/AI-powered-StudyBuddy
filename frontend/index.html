@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyAI | Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="app-container" style="justify-content: center; align-items: center; padding: 2rem;">
+        <div class="card animate-fade" style="width: 100%; max-width: 450px; cursor: default;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 class="logo" style="font-size: 2.5rem; margin-bottom: 0.5rem;">StudyAI</h1>
+                <p style="color: var(--text-muted);" id="authSubtitle">Sign in to your study hub</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="student@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+            </form>
+
+            <!-- Register Form (Hidden) -->
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="student@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+                <span id="authToggleText">Don't have an account?</span> 
+                <a href="#" id="authToggleBtn" style="color: var(--primary); text-decoration: none; font-weight: 600;">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const toggleBtn = document.getElementById('authToggleBtn');
+        const toggleText = document.getElementById('authToggleText');
+        const subtitle = document.getElementById('authSubtitle');
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                toggleText.textContent = "Don't have an account?";
+                toggleBtn.textContent = "Sign Up";
+                subtitle.textContent = "Sign in to your study hub";
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                toggleText.textContent = "Already have an account?";
+                toggleBtn.textContent = "Sign In";
+                subtitle.textContent = "Create your student profile";
+            }
+        });
+    </script>
+</body>
+</html>

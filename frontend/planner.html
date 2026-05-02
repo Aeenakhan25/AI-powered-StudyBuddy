@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner | StudyAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .task-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--glass-border); border-radius: 16px; margin-bottom: 1rem; transition: var(--transition); box-shadow: var(--shadow); }
+        .task-item:hover { transform: translateX(5px); border-color: var(--primary); }
+        .task-item.completed { opacity: 0.5; background: var(--surface-light); }
+        .task-item.completed h4 { text-decoration: line-through; }
+        .task-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <h1 class="logo">StudyAI</h1>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
+                <li><a href="notes.html"><span>📝</span> Notes</a></li>
+                <li><a href="chat.html"><span>🤖</span> Chat</a></li>
+                <li><a href="quiz.html"><span>🎯</span> Quiz</a></li>
+                <li><a href="flashcards.html"><span>🗂️</span> Flashcards</a></li>
+                <li><a href="planner.html" class="active"><span>📅</span> Planner</a></li>
+            </ul>
+            <div style="margin-top: auto;">
+                <button onclick="StudyAI.logout()" class="btn btn-glass" style="width: 100%;">Logout</button>
+            </div>
+        </nav>
+
+        <main class="animate-fade">
+            <header>
+                <h1>Planner</h1>
+                <p style="color: var(--text-muted);">Stay on top of your study schedule.</p>
+            </header>
+
+            <div style="display: grid; grid-template-columns: 1fr 350px; gap: 3rem;">
+                <div>
+                    <h2 style="margin-bottom: 2rem;">Tasks</h2>
+                    <div id="tasksList"></div>
+                </div>
+                <div>
+                    <div class="card" style="position: sticky; top: 2rem;">
+                        <h3>New Task</h3>
+                        <form id="addTaskForm" style="margin-top: 1.5rem;">
+                            <div class="form-group"><label>Title</label><input type="text" id="taskTitle" placeholder="What needs to be done?" required></div>
+                            <div class="form-group"><label>Subject</label><input type="text" id="taskSubject" placeholder="Subject..."></div>
+                            <div class="form-group"><label>Due Date</label><input type="date" id="taskDeadline" required></div>
+                            <div class="form-group"><label>Notes</label><textarea id="taskDescription" placeholder="Description..."></textarea></div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Add Task</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

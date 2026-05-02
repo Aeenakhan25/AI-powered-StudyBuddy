@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards | StudyAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .flashcard-container { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .flashcard { width: 100%; height: 400px; perspective: 1000px; cursor: pointer; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 2.5rem; border-radius: var(--radius); background: var(--surface); border: 2px solid var(--glass-border); font-size: 1.4rem; font-weight: 600; box-shadow: var(--shadow); text-align: center; }
+        .flashcard-back { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; transform: rotateY(180deg); border: none; }
+    </style>
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <h1 class="logo">StudyAI</h1>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
+                <li><a href="notes.html"><span>📝</span> Notes</a></li>
+                <li><a href="chat.html"><span>🤖</span> Chat</a></li>
+                <li><a href="quiz.html"><span>🎯</span> Quiz</a></li>
+                <li><a href="flashcards.html" class="active"><span>🗂️</span> Flashcards</a></li>
+                <li><a href="planner.html"><span>📅</span> Planner</a></li>
+            </ul>
+            <div style="margin-top: auto;">
+                <button onclick="StudyAI.logout()" class="btn btn-glass" style="width: 100%;">Logout</button>
+            </div>
+        </nav>
+
+        <main class="animate-fade">
+            <header>
+                <h1>Flashcards</h1>
+                <p style="color: var(--text-muted);">Master your notes with spaced repetition.</p>
+            </header>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3>Generate Cards</h3>
+                <div class="form-group" style="margin-top: 1rem; display: flex; gap: 1rem;">
+                    <select id="flashNoteSelect" style="flex: 1;"><option value="">Select note...</option></select>
+                    <button class="btn btn-primary" id="genFlashBtn">Generate</button>
+                </div>
+            </div>
+
+            <div class="flashcard-container" id="flashcardSection" style="display: none;">
+                <div class="flashcard" id="mainFlashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front" id="cardFront"></div>
+                        <div class="flashcard-back" id="cardBack"></div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; width: 100%;">
+                    <button class="btn btn-glass" style="flex: 1; border-color: #ef4444;" onclick="StudyAI.reviewFlashcard(false)">❌ Forget</button>
+                    <button class="btn btn-primary" style="flex: 1; background: #22c55e;" onclick="StudyAI.reviewFlashcard(true)">✅ Got it</button>
+                </div>
+                <p id="cardCount" style="color: var(--text-muted);"></p>
+            </div>
+            <div id="noFlashcards" style="text-align: center; padding: 4rem; display: none;">
+                <p>All caught up! Generate new cards to continue.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
